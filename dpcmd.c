@@ -466,7 +466,7 @@ int GetConfigVer()
 	getExecPath(path);
 	if ((fp = fopen(path,"rt")) == NULL)
 	{
-		fprintf(stderr,"Error opening file: %s\n",fname);
+		fprintf(stderr,"Error opening file: %s\n",path);
 		return 1;
 	}
 
