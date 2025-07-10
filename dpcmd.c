@@ -648,7 +648,8 @@ int main(int argc, char *argv[])
 				g_bEnableVpp=true;
 				break;
 			case 'O':  //Log file
-				strcpy(g_LogPath,optarg);
+				strncpy(g_LogPath, optarg, sizeof(g_LogPath) - 1);
+				g_LogPath[sizeof(g_LogPath) - 1] = '\0';  // Ensure null termination
 //					printf("%s\r\n",g_LogPath);
 				break;
 			case 'i':
