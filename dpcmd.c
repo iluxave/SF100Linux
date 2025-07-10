@@ -13,13 +13,12 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <time.h>
-#include <unistd.h>
  #include <sys/types.h>
 
 #include "dpcmd.h"
 #include "board.h"
 #include "FlashCommand.h"
-#define min(a,b) (a>b? b:a)
+#define min(a,b) (a<b? a:b)
  
 #include <signal.h> 
 
@@ -467,7 +466,7 @@ int GetConfigVer()
 	getExecPath(path);
 	if ((fp = fopen(path,"rt")) == NULL)
 	{
-		fprintf(stderr,"Error opening file: %s\n",fname);
+		fprintf(stderr,"Error opening file: %s\n",path);
 		return 1;
 	}
 
@@ -775,7 +774,8 @@ int FirmwareUpdate()
     }
 
     // obtain file size:
-    filesize = fseek (pFile , 0 , SEEK_END);
+    fseek (pFile , 0 , SEEK_END);
+    filesize = ftell(pFile);
 	if(filesize< sizeof(FW_INFO))
 	{
 		printf("File %s too small.\r\n", g_parameter_fw);
@@ -1081,7 +1081,7 @@ bool InitProject(void)
 		        printf("Chip Type %s is applied manually.\r\n",Chip_Info.TypeName);
 		        printf("%s chip size is %zd bytes.\n\n",Chip_Info.TypeName,Chip_Info.ChipSizeInByte);
 		        ProjectInitWithID(Chip_Info,i);
-                        if(Chip_Info.Class=="N25Qxxx_Large")
+                        if(strcmp(Chip_Info.Class,"N25Qxxx_Large")==0)
 			    isSendFFsequence=true;
 		    }
 		    else
