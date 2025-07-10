@@ -1406,7 +1406,9 @@ void do_DisplayOrSave(void)
             for(i=0; i<Len; i++)
             {
                 if((i%16==0) && i != 0)
-                printf("\n");
+                {
+                    printf("\n");
+                }
                 printf("%02X  ",*(pBufferForLastReadData[g_uiDevNum-1]+i)); 
             }
             printf("\n\n");
