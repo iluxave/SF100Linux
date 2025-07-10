@@ -1081,7 +1081,7 @@ bool InitProject(void)
 		        printf("Chip Type %s is applied manually.\r\n",Chip_Info.TypeName);
 		        printf("%s chip size is %zd bytes.\n\n",Chip_Info.TypeName,Chip_Info.ChipSizeInByte);
 		        ProjectInitWithID(Chip_Info,i);
-                        if(Chip_Info.Class=="N25Qxxx_Large")
+                        if(strcmp(Chip_Info.Class,"N25Qxxx_Large")==0)
 			    isSendFFsequence=true;
 		    }
 		    else
