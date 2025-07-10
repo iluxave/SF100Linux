@@ -18,7 +18,7 @@
 #include "dpcmd.h"
 #include "board.h"
 #include "FlashCommand.h"
-#define min(a,b) (a>b? b:a)
+#define min(a,b) (a<b? a:b)
  
 #include <signal.h> 
 
